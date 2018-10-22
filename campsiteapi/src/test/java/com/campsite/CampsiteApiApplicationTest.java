@@ -1,6 +1,6 @@
 package com.campsite;
 
-import com.campsite.api.CampsiteController;
+import com.campsite.api.CsAvailabilityController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class CampsiteApiApplicationTest {
 
 	@Autowired
-	private CampsiteController controller;
+	private CsAvailabilityController controller;
 
 	@Test
 	public void contextLoads() {

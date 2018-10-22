@@ -22,13 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@Import(CampsiteApiApplication.class)
 //@RunWith(SpringRunner.class)
 ////@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@WebMvcTest(CampsiteController.class)
+//@WebMvcTest(CsAvailabilityController.class)
 @AutoConfigureMockMvc
 //@JsonTest
-public class CampsiteControllerTest {
+public class CsAvailabilityControllerTest {
 
 //    @Autowired
-//    private CampsiteController controller;
+//    private CsAvailabilityController controller;
 
     @Autowired
     private MockMvc mvc;
@@ -53,6 +53,32 @@ public class CampsiteControllerTest {
 //    @Autowired
 //    private TestRestTemplate restTemplate;
 
+
+    @Test
+    public void shouldSucceedWhenDateRangeIsValid() {
+//        assertThat(controller).isNotNull();
+        // assert code 200
+        try {
+            this.mvc.perform(get("/api/available?date1=2019-01-05&date2=2019-01-25"))
+                    .andExpect(status().isOk());
+//                    .andExpect(MockMvcResultMatchers.jsonPath("$.arrivalDate", is("2019-01-05")))
+//                    .andExpect(MockMvcResultMatchers.jsonPath("$.departureDate", is("2019-01-25")));;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shouldFailWhenDateRangeIsValid() {
+//        assertThat(controller).isNotNull();
+        // assert code 200
+        try {
+            this.mvc.perform(get("/api/available?date1=2019-01-25&date2=2019-01-03"))
+                    .andExpect(status().is4xxClientError());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void shouldSucceedIfReservationNoLongerThanThreeDays() {

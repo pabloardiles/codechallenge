@@ -51,7 +51,7 @@ public class CsAvailabilityController {
                 return list;
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException();
         }
         return null;
     }

@@ -7,23 +7,21 @@ import com.campsite.model.Reservation;
 import com.campsite.repository.AvailabilityRepository;
 import com.campsite.repository.ReservationRepository;
 import com.campsite.validator.DateValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class CsAvailabilityController {
 
+    private static final Logger logger = LogManager.getLogger(CsAvailabilityController.class);
 
-    //LOGS
     @Autowired
     private ReservationRepository reservationRepository; //remove this
 
@@ -40,9 +38,10 @@ public class CsAvailabilityController {
         final List<AvailabilityResponse> list = new ArrayList<>();
         availabilities.forEach(a -> {
             AvailabilityResponse ar = new AvailabilityResponse();
-            ar.date = a.date;
-            ar.slots = a.slots;
+            ar.setDate(a.getDate());
+            ar.setSlots(a.getSlots());
             list.add(ar);});
+        logger.info("Returning results: {}", list);
         return list;
     }
 

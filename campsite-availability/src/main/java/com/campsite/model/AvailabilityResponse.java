@@ -1,9 +1,9 @@
 package com.campsite.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AvailabilityResponse {
 
-    public Date date;
+    public LocalDate date;
     public int slots;
 }

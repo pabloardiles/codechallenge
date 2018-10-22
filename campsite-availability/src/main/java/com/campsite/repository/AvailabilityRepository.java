@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class AvailabilityRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<Availability> findAvailability(Date from, Date to) {
+    public List<Availability> findAvailability(LocalDate from, LocalDate to) {
         Query query = Query.query(Criteria.where("date").gte(from)
                 .andOperator(Criteria.where("date").lte(to)));
         return mongoTemplate.find(query, Availability.class);

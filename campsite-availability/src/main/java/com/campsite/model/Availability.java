@@ -1,12 +1,8 @@
 package com.campsite.model;
 
-import org.springframework.data.annotation.Id;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Availability {
-    @Id
-    public String availabilityId;
-    public Date date;
+    public LocalDate date;
     public int slots;
 }

@@ -3,10 +3,7 @@ package com.campsite.api;
 import com.campsite.error.CampsiteError;
 import com.campsite.model.Availability;
 import com.campsite.model.AvailabilityResponse;
-import com.campsite.model.CampsiteResponse;
-import com.campsite.model.Reservation;
 import com.campsite.repository.AvailabilityRepository;
-import com.campsite.repository.ReservationRepository;
 import com.campsite.validator.DateValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,9 +27,6 @@ public class CsAvailabilityController {
     private static final Logger logger = LogManager.getLogger(CsAvailabilityController.class);
 
     @Autowired
-    private ReservationRepository reservationRepository; //remove this
-
-    @Autowired
     private AvailabilityRepository availabilityRepository;
 
 
@@ -54,18 +48,6 @@ public class CsAvailabilityController {
             list.add(ar);});
         logger.info("Returning results: {}", list);
         return list;
-    }
-
-    //remove this
-    @RequestMapping(value = "/reserve", method = RequestMethod.POST)
-    public CampsiteResponse reserve(@RequestBody Reservation reservation) {
-        // verify date range
-        try {
-            reservationRepository.save(reservation);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new CampsiteResponse();
     }
 
 }

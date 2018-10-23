@@ -17,42 +17,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@ContextConfiguration(classes = CampsiteApiApplication.class)
-//@AutoConfigureWebTestClient
-//@Import(CampsiteApiApplication.class)
-//@RunWith(SpringRunner.class)
-////@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@WebMvcTest(CsReservationController.class)
 @AutoConfigureMockMvc
-//@JsonTest
 public class CsReservationControllerTest {
-
-//    @Autowired
-//    private CsReservationController controller;
 
     @Autowired
     private MockMvc mvc;
-//
-//    @Autowired
-//    private JacksonTester<ReservationResponse> json;
-
-//    @Test
-//    public void contextLoads() {
-//        assertThat(controller).isNotNull();
-//    }
-
-//    @Autowired
-//    private WebTestClient webClient;
-
-
-
-    ////////////////////////////////////
-//    @LocalServerPort
-//    private int port;
-//
-//    @Autowired
-//    private TestRestTemplate restTemplate;
-
 
     @Test
     public void shouldSucceedWhenDateRangeIsValid() {
@@ -97,24 +66,6 @@ public class CsReservationControllerTest {
 //                    .andExpect(MockMvcResultMatchers.jsonPath("$.arrivalDate", is("2019-01-05")))
 //                    .andExpect(MockMvcResultMatchers.jsonPath("$.departureDate", is("2019-01-25")));;
 //        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }
-
-    @Test
-    public void exampleTest() {
-//        Assertions.assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/available?date1=2019-01-05&date2=2019-01-25",
-//                String.class)).contains("Hello World");
-//        try {
-//
-//
-
-//            ReservationResponse response = new ReservationResponse();
-//            this.webClient.get().uri("/api/available?date1=2019-01-05&date2=2019-01-25")
-//                    .exchange()
-//                    .expectStatus().isOk()
-//                    .expectBody(String.class).isEqualTo(this.json.write(response).getJson());
-//        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
     }

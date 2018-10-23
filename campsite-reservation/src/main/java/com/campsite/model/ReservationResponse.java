@@ -2,19 +2,9 @@ package com.campsite.model;
 
 public class ReservationResponse {
 
-    private String reservationId;
-
     private String arrivalDate;
 
     private String departureDate;
-
-    public String getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
-    }
 
     public String getArrivalDate() {
         return arrivalDate;

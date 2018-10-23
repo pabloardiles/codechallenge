@@ -28,8 +28,6 @@ public class CsReservationControllerTest {
         try {
             this.mvc.perform(get("/api/availability?date1=2019-01-05&date2=2019-01-25"))
                     .andExpect(status().isOk());
-//                    .andExpect(MockMvcResultMatchers.jsonPath("$.arrivalDate", is("2019-01-05")))
-//                    .andExpect(MockMvcResultMatchers.jsonPath("$.departureDate", is("2019-01-25")));;
         } catch (Exception e) {
             e.printStackTrace();
         }

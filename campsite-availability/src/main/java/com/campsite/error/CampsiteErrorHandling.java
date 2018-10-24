@@ -20,7 +20,7 @@ public class CampsiteErrorHandling extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {IllegalArgumentException.class, DateTimeParseException.class})
     protected ResponseEntity<Object> handleError(RuntimeException ex, WebRequest request) {
         logger.error("Exception thrown: ", ex.getMessage());
-        CampsiteError response = new CampsiteError("Provided date range is invalid.");
+        CampsiteError response = new CampsiteError(ex.getMessage());
         return handleExceptionInternal(ex, response,
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }

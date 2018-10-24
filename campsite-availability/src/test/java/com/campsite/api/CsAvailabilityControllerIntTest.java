@@ -15,10 +15,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Integration tests for /api/availability resource using real database connection.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CsAvailabilityControllerTest {
+public class CsAvailabilityControllerIntTest {
 
     @Autowired
     private MockMvc mvc;
@@ -26,7 +29,9 @@ public class CsAvailabilityControllerTest {
     @Test
     public void shouldSucceedWhenDateRangeIsValid() {
         try {
-            this.mvc.perform(get("/api/availability?date1=2019-01-05&date2=2019-01-25"))
+            this.mvc.perform(get("/api/availability?from=2019-01-05&to=2019-01-25"))
+                    .andExpect(status().isOk());
+            this.mvc.perform(get("/api/availability?from=2019-01-05"))
                     .andExpect(status().isOk());
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +41,9 @@ public class CsAvailabilityControllerTest {
     @Test
     public void shouldFailWhenDateRangeIsInvalid() {
         try {
-            this.mvc.perform(get("/api/availability?date1=2019-01-25&date2=2019-01-03"))
+            this.mvc.perform(get("/api/availability?from=2019-01-25&to=2019-01-03"))
+                    .andExpect(status().is4xxClientError());
+            this.mvc.perform(get("/api/availability?from=2015-01-25&to=2015-01-26"))
                     .andExpect(status().is4xxClientError());
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +53,7 @@ public class CsAvailabilityControllerTest {
     @Test
     public void shouldFailWhenInsufficientParameters() {
         try {
-            this.mvc.perform(get("/api/availability?date2=2019-01-03"))
+            this.mvc.perform(get("/api/availability?to=2019-01-03"))
                     .andExpect(status().is4xxClientError());
         } catch (Exception e) {
             e.printStackTrace();

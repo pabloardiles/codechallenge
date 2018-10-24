@@ -4,7 +4,7 @@ import com.campsite.error.CampsiteError;
 import com.campsite.model.Availability;
 import com.campsite.model.AvailabilityResponse;
 import com.campsite.repository.AvailabilityRepository;
-import com.campsite.validator.DateValidator;
+import com.campsite.validator.DateUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,11 +35,9 @@ public class CsAvailabilityController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of availabilities", response = AvailabilityResponse.class),
             @ApiResponse(code = 400, message = "Invalid parameters", response = CampsiteError.class)})
-    public List<AvailabilityResponse> getAvailability(@RequestParam String date1, @RequestParam String date2) {
-        DateValidator.validateDateRange(date1, date2);
-        LocalDate d1 = LocalDate.parse(date1);
-        LocalDate d2 = LocalDate.parse(date2);
-        List<Availability> availabilities = this.availabilityRepository.findAvailability(d1, d2);
+    public List<AvailabilityResponse> getAvailability(@RequestParam String from, @RequestParam(required = false) String to) {
+        DateUtils.DateRange dateRange = DateUtils.getDateRange(from, to);
+        List<Availability> availabilities = this.availabilityRepository.findAvailability(dateRange.from, dateRange.to);
         final List<AvailabilityResponse> list = new ArrayList<>();
         availabilities.forEach(a -> {
             AvailabilityResponse ar = new AvailabilityResponse();

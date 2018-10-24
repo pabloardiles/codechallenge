@@ -70,7 +70,7 @@ mvn spring-boot:run
 
 Notice that campsite-availability is registered in port 8080 and campsite-reservations in port 8081.
 
-You can take a look at their Swagger API docs at http://localhost:8080 and http://localhost:8081
+You can take a look at their Swagger API docs at http://localhost:8080/swagger-ui.html and http://localhost:8081/swagger-ui.html
 
 
 ### Concurrent reservations

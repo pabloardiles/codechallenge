@@ -10,7 +10,7 @@
 
 ### Get the code
 
-git clone http://...
+git clone https://github.com/pabloardiles/codechallenge.git
 
 ### Assumptions
 
@@ -44,11 +44,14 @@ Restore database
 ```
 ./mongorestore /PATH/TO/codechallenge/db/dbdump/campsitedb -d campsitedb
 ```
+You can now use MongoDB Compass to check the database content.
 
 ### Campsite APIs
 
 I've splitted the API in 2 separate services: campsite-availability and campsite-reservations.
+
 campsite-availability implements the resource /api/availability which let the user search for slots availability for certain date.
+
 campsite-reservations implements reservation management, /api/reserve, /api/cancel and /api/update resources.
 
 Splitted this way makes campsite-availability scale independently for service availability reasons. For instance, it can be included within Container orchestration (ECS, Kubernetes, etc) or can be placed into an auto scaling group to scale out accordingly. Also it might use a read replica database to improve performance.
@@ -59,7 +62,7 @@ In order to build the services run:
 mvn clean install
 ```
 
-In order to deploy and run the services:
+Deploy and run the services:
 
 ```
 mvn spring-boot:run
@@ -67,7 +70,7 @@ mvn spring-boot:run
 
 Notice that campsite-availability is registered in port 8080 and campsite-reservations in port 8081.
 
-You can take a look at their Swagger API docs at http://localhost:8080 and http://localhost:8081
+You can take a look at their Swagger API docs at http://localhost:8080/swagger-ui.html and http://localhost:8081/swagger-ui.html
 
 
 ### Concurrent reservations

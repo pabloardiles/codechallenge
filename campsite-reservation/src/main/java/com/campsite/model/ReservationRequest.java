@@ -1,5 +1,7 @@
 package com.campsite.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -44,6 +46,7 @@ public class ReservationRequest {
         this.email = email;
     }
 
+    @ApiModelProperty(value = "YYYY-MM-DD")
     public LocalDate getArrivalDate() {
         return arrivalDate;
     }
@@ -52,6 +55,7 @@ public class ReservationRequest {
         this.arrivalDate = arrivalDate;
     }
 
+    @ApiModelProperty(value = "YYYY-MM-DD")
     public LocalDate getDepartureDate() {
         return departureDate;
     }

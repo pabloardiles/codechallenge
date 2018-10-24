@@ -5,10 +5,7 @@ import com.campsite.model.Reservation;
 import com.campsite.model.ReservationRequest;
 import com.campsite.model.ReservationResponse;
 import com.campsite.validator.DateUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +44,19 @@ public class CsReservationController {
         return new ReservationResponse(id);
     }
 
-    @RequestMapping(value = "/cancel", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cancel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Cancel reservation", response = ReservationResponse.class, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Reservation cancelled successfully", response = ReservationResponse.class),
             @ApiResponse(code = 404, message = "Reservation not found", response = CampsiteError.class)
     })
-    public ReservationResponse cancel(@RequestParam String reservationId) {
+    public ReservationResponse cancel(
+            @ApiParam(value = "e.g. 5bd07e81ccc3a4033c143acf", required = true)@RequestParam String reservationId) {
         String id = reservationService.removeReservation(reservationId);
         return new ReservationResponse(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update reservation (replace the previous one)", response = ReservationResponse.class, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Reservation cancelled successfully", response = ReservationResponse.class),

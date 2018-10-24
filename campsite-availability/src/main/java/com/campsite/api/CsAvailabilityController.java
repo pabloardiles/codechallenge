@@ -5,10 +5,7 @@ import com.campsite.model.Availability;
 import com.campsite.model.AvailabilityResponse;
 import com.campsite.repository.AvailabilityRepository;
 import com.campsite.validator.DateUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +32,9 @@ public class CsAvailabilityController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of availabilities", response = AvailabilityResponse.class),
             @ApiResponse(code = 400, message = "Invalid parameters", response = CampsiteError.class)})
-    public List<AvailabilityResponse> getAvailability(@RequestParam String from, @RequestParam(required = false) String to) {
+    public List<AvailabilityResponse> getAvailability(
+            @ApiParam(value = "Date format YYYY-MM-DD", required = true)@RequestParam String from,
+            @ApiParam(value = "Date format YYYY-MM-DD", required = true)@RequestParam(required = false) String to) {
         DateUtils.DateRange dateRange = DateUtils.getDateRange(from, to);
         List<Availability> availabilities = this.availabilityRepository.findAvailability(dateRange.from, dateRange.to);
         final List<AvailabilityResponse> list = new ArrayList<>();

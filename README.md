@@ -79,6 +79,6 @@ The easiest way to see how overlapping reservations can be handled is with a JMe
 Open the file /codechallenge/jmeter-test-plan/campsite-test-plan.jmx in JMeter and run the test plan.
 You will notice in "View Results Tree" that there will be several requests, some of them succeeded and some of them failed.
 Assuming that the date trying to perform the reservation is fully available at the moment (i.e. slots = 10), there should be 10 request with status code 200, and the rest should be 2 types of 409 errors:  
-- "No availability for the selected dates": means that the date has run out of slots.
-- "One or more dates are not available at the time. Try again later.": means that 2 o more request tried to reserve in the same date. The transaction is rolled back for requests that couldn't be served.
+- "No slots left for date yyyy-mm-dd": means that the date has run out of slots.
+- "One or more dates are not available at this time. Try again later.": means that 2 o more request tried to reserve in the same date. The transaction is rolled back for requests that couldn't be served.
 

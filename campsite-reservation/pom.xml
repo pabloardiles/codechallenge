@@ -22,7 +22,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<!--<spring.framework.version>5.1.1.RELEASE</spring.framework.version>-->
 		<mongodb.version>3.8.0</mongodb.version>
 		<mongo-driver-reactivestreams.version>1.9.0</mongo-driver-reactivestreams.version>
 		<spring-data-releasetrain.version>Lovelace-RC1</spring-data-releasetrain.version>
@@ -40,45 +39,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
-		<!--</dependency>-->
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!--<dependency>-->
-			<!--<groupId>${project.groupId}</groupId>-->
-			<!--<artifactId>spring-data-mongodb-example-utils</artifactId>-->
-			<!--<version>${project.version}</version>-->
-			<!--<scope>test</scope>-->
-		<!--</dependency>-->
-
-
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.data</groupId>-->
-			<!--<artifactId>spring-data-mongodb</artifactId>-->
-			<!--&lt;!&ndash;<version>2.1.1.RELEASE</version>&ndash;&gt;-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.mongodb</groupId>-->
-			<!--<artifactId>mongo-java-driver</artifactId>-->
-			<!--<version>3.8.2</version>-->
-		<!--</dependency>-->
-
-
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-common</artifactId>
@@ -94,7 +63,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

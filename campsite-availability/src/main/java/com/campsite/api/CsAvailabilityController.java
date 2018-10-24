@@ -36,7 +36,7 @@ public class CsAvailabilityController {
             @ApiResponse(code = 400, message = "Invalid parameters", response = CampsiteError.class)})
     public List<AvailabilityResponse> getAvailability(
             @ApiParam(value = "Date format YYYY-MM-DD", required = true)@RequestParam String from,
-            @ApiParam(value = "Date format YYYY-MM-DD", required = true)@RequestParam(required = false) String to) {
+            @ApiParam(value = "Date format YYYY-MM-DD", required = false)@RequestParam(required = false) String to) {
         DateUtils.DateRange dateRange = DateUtils.getDateRange(from, to);
         List<Availability> availabilities = this.availabilityRepository.findAvailability(dateRange.from, dateRange.to);
         final List<AvailabilityResponse> list = new ArrayList<>();

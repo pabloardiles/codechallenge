@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface ReservationRepository extends MongoRepository<Reservation, Long> {
+public interface ReservationRepository extends MongoRepository<Reservation, String> {
 
-    List<Reservation> findByArrivalDateAndDepartureDate(String date1, String date2);
 }

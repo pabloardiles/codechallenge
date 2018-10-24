@@ -1,26 +1,54 @@
 package com.campsite.model;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ReservationRequest {
 
-    private Date from;
+    @NotNull private String firstName;
+    @NotNull private String lastName;
+    @NotNull private String email;
+    @NotNull private LocalDate arrivalDate;
+    @NotNull private LocalDate departureDate;
 
-    private Date to;
-
-    public Date getFrom() {
-        return from;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Date getTo() {
-        return to;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
 }

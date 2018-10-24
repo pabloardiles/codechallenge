@@ -58,4 +58,28 @@ public class CsReservationController {
         return new ReservationResponse(id);
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Update reservation (replace the previous one)", response = ReservationResponse.class, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Reservation cancelled successfully", response = ReservationResponse.class),
+            @ApiResponse(code = 400, message = "Invalid request body", response = CampsiteError.class),
+            @ApiResponse(code = 404, message = "Reservation not found", response = CampsiteError.class),
+            @ApiResponse(code = 409, message = "No availability for the selected dates", response = CampsiteError.class),
+            @ApiResponse(code = 409, message = "One or more dates are not available at the time. Try again later.", response = CampsiteError.class)
+    })
+    public ReservationResponse update(@Valid @RequestBody ReservationRequest reservationRequest) {
+        if (reservationRequest.getId() == null) {
+            throw new IllegalArgumentException("id is required");
+        }
+        DateUtils.validateDateRange(reservationRequest.getArrivalDate(), reservationRequest.getDepartureDate());
+        Reservation res = new Reservation();
+        res.setId(reservationRequest.getId());
+        res.setFirstName(reservationRequest.getFirstName());
+        res.setLastName(reservationRequest.getLastName());
+        res.setEmail(reservationRequest.getEmail());
+        res.setArrivalDate(reservationRequest.getArrivalDate());
+        res.setDepartureDate(reservationRequest.getDepartureDate());
+        String id = reservationService.updateReservation(res);
+        return new ReservationResponse(id);
+    }
 }

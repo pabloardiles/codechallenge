@@ -54,6 +54,14 @@ public class CampsiteErrorHandling extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
+    @ExceptionHandler(value = {IllegalArgumentException.class})
+    protected ResponseEntity<Object> handleParamsError(RuntimeException ex, WebRequest request) {
+        logger.error("Exception thrown: {}", ex.getMessage());
+        CampsiteError response = new CampsiteError(ex.getMessage());
+        return super.handleExceptionInternal(ex, response,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         if (ex instanceof MethodArgumentNotValidException) {

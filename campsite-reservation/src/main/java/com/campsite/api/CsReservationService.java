@@ -24,7 +24,7 @@ public class CsReservationService {
     @Transactional
     public String saveReservation(Reservation reservation) {
         List<Availability> list = availabilityRepository.findAvailability(reservation.getArrivalDate(), reservation.getDepartureDate());
-        int dateCount = DateUtils.getDateCount(reservation.getArrivalDate(), reservation.getDepartureDate());
+        int dateCount = DateUtils.getDaysCount(reservation.getArrivalDate(), reservation.getDepartureDate());
         if (list.isEmpty() || list.size() != dateCount) {
             throw new NoAvailabilityException("Some dates are not available for selection at the moment.");
         }
@@ -45,4 +45,9 @@ public class CsReservationService {
         return res.get().getId();
     }
 
+    @Transactional
+    public String updateReservation(Reservation reservation) {
+        removeReservation(reservation.getId());
+        return saveReservation(reservation);
+    }
 }

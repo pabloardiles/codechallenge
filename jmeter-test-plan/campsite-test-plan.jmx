@@ -41,9 +41,9 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;firstName&quot;:&quot;Pablo&quot;,&#xd;
-	&quot;lastName&quot;: &quot;Ardiles&quot;,&#xd;
-	&quot;email&quot;: &quot;myemail@somehost.com&quot;,&#xd;
+	&quot;firstName&quot;:&quot;Charly&quot;,&#xd;
+	&quot;lastName&quot;: &quot;JMeter&quot;,&#xd;
+	&quot;email&quot;: &quot;cjmeter@tests.com&quot;,&#xd;
 	&quot;arrivalDate&quot;: &quot;2018-11-04&quot;,&#xd;
 	&quot;departureDate&quot;: &quot;2018-11-04&quot;&#xd;
 }</stringProp>
@@ -52,7 +52,7 @@
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.port">8081</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/api/reserve</stringProp>

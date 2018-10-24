@@ -20,13 +20,13 @@ public class DateUtils {
         } else {
             d2 = LocalDate.parse(date2);
         }
-        if (d1.isAfter(d2)) {
-            final String msg = "Invalid parameters " + date1 + " and " + date2;
+        if (d1.isBefore(LocalDate.now())) {
+            final String msg = "Time travelling is not supported in this version: " + d1;
             logger.error(msg);
             throw new IllegalArgumentException(msg);
         }
-        if (d1.isBefore(LocalDate.now())) {
-            final String msg = "Time travelling is not supported in this version: " + d1;
+        if (d1.isAfter(d2)) {
+            final String msg = "Invalid parameters " + date1 + " and " + date2;
             logger.error(msg);
             throw new IllegalArgumentException(msg);
         }

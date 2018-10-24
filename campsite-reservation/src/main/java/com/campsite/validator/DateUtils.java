@@ -16,6 +16,11 @@ public class DateUtils {
     private DateUtils() {}
 
     public static void validateDateRange(LocalDate date1, LocalDate date2) {
+        if (date1.isBefore(LocalDate.now())) {
+            final String msg = "Time travelling is not supported in this version: " + date1;
+            logger.error(msg);
+            throw new IllegalArgumentException(msg);
+        }
         if (date1.isAfter(date2)) {
             logger.error("Invalid date range: <{}> and <{}>!", date1, date2);
             throw new InvalidDatesException("Invalid date range");

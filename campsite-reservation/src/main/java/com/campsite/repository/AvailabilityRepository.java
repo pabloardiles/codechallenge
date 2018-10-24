@@ -2,7 +2,6 @@ package com.campsite.repository;
 
 import com.campsite.api.NoAvailabilityException;
 import com.campsite.model.Availability;
-import com.campsite.validator.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
